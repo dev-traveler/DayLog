@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import TransparentCircleButton from './TransparentCircleButton';
 
-function WriteHeader() {
+function WriteHeader({onSave}) {
   const navigation = useNavigation();
   const onGoBack = () => {
     navigation.pop();
@@ -12,9 +12,9 @@ function WriteHeader() {
     <View style={styles.block}>
       <View style={styles.iconButtonWrapper}>
         <TransparentCircleButton
-          onPress={onGoBack}
           name="arrow-back"
           color="#424242"
+          onPress={onGoBack}
         />
       </View>
       <View style={styles.buttons}>
@@ -23,7 +23,11 @@ function WriteHeader() {
           color="#ef5350"
           hasMarginRight
         />
-        <TransparentCircleButton name="check" color="#009688" />
+        <TransparentCircleButton
+          name="check"
+          color="#009688"
+          onPress={onSave}
+        />
       </View>
     </View>
   );
