@@ -7,9 +7,11 @@ import WriteHeader from '../components/WriteHeader';
 import WriteEditor from '../components/WriteEditor';
 import LogContext from '../contexts/LogContext';
 
-function WriteScreen() {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+function WriteScreen({route}) {
+  const log = route.params?.log;
+
+  const [title, setTitle] = useState(log?.title ?? '');
+  const [body, setBody] = useState(log?.body ?? '');
 
   const navigation = useNavigation();
   const {onCreate} = useContext(LogContext);
