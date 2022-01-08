@@ -14,15 +14,24 @@ function WriteScreen({route}) {
   const [body, setBody] = useState(log?.body ?? '');
 
   const navigation = useNavigation();
-  const {onCreate} = useContext(LogContext);
+  const {onCreate, onModify} = useContext(LogContext);
 
   const onSave = () => {
-    onCreate({
-      title,
-      body,
-      // 날짜를 문자열로 변환
-      date: new Date().toISOString(),
-    });
+    if (log) {
+      onModify({
+        id: log.id,
+        date: log.date,
+        title,
+        body,
+      });
+    } else {
+      onCreate({
+        title,
+        body,
+        // 날짜를 문자열로 변환
+        date: new Date().toISOString(),
+      });
+    }
     navigation.pop();
   };
 
